@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Task App demo with Next.js + MongoDB
 
-## Getting Started
+- Built with [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+- Uses Tailwind for CSS customizations.
+- Uses Mongo DB in the backend to store the tasks.
+- Uses Next Auth with Google based authentication.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Local dev setup guide
+### 1. Checkout the code
+```
+git clone https://github.com/chetan1507/TaskAppDemo.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Run a local MongoDB instance
+You can follow the instructions on the following page to install MongoDB on your machine accordingly and run the same.
+https://www.mongodb.com/docs/manual/administration/install-community/
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Setup local env variables
+Setup the following variables in `.env.local` file at root.
+Configure them for prod in a similar way if you are deploying prod.
+```
+GOOGLE_CLIENT_ID=<google client id>
+GOOGLE_CLIENT_SECRET=<google client secret>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+NEXTAUTH_URL=http://localhost:3000/api/v1/auth
+NEXTAUTH_SECRET=<auth secret>
 
-## Learn More
+MONGO_DB_URL=mongodb://127.0.0.1:27017/
+```
 
-To learn more about Next.js, take a look at the following resources:
+#### Side notes
+- Ensure that google client id and secret also have the required whitelisted url endpoints and callback endpoints.
+```
+https://<domain name>/api/auth/callback/google
+```
+- If you are using [https://cloud.mongodb.com/](https://cloud.mongodb.com/) for mongodb endpoint, you'll have to configure the same with user name and password and also ensure that the access is not restricted by IP if you are deploying to Vercel like platforms.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Run the dev server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+npm ci
+npm run dev
+# or
+pnpm ci
+pnpm dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the app home screen.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Production
+The demo app is also deployed on [https://task-demo-app.vercel.app/](https://task-demo-app.vercel.app/).
+Do check it out.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Author
+Chetan Agrawal (<chetan1507@gmail.com>)
+Feel free to drop a note or raise issues.
