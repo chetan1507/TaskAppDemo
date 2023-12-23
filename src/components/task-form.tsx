@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import _ from 'lodash';
 import { DropdownInput } from "./dropdown-input";
-import { TaskStatus } from "@/data-models/task-data-service/types";
+import { TaskStatus } from "../data-services/task-data-service/types";
 
 export const TaskForm = ({
   task,

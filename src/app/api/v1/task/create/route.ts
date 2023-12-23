@@ -5,7 +5,7 @@
     //     status: 'OPEN',
     // });
 
-import { createTask } from "@/data-models/task-data-service";
+import { createTask } from "@/data-services/task-data-service";
 import { getServerSession } from "next-auth";
 
 export async function POST(request: Request) {

@@ -1,18 +1,18 @@
 "use client";
 
-import { FilterView } from "@/components/filter-view";
-import { DropdownInput } from "@/components/dropdown-input";
-import { LeftNav } from "@/components/left-nav";
-import { Modal } from "@/components/modal";
-import { TaskForm } from "@/components/task-form";
-import { Task, TaskStatus } from "@/data-models/task-data-service/types";
-import * as TaskService from "@/services/api/task-service";
+import { FilterView } from "../../components/filter-view";
+import { DropdownInput } from "../../components/dropdown-input";
+import { LeftNav } from "../../components/left-nav";
+import { Modal } from "../../components/modal";
+import { TaskForm } from "../../components/task-form";
+import { Task, TaskStatus } from "../../data-services/task-data-service/types";
+import * as TaskService from "../../services/api/task-service";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { DeleteConfirmModal } from "../../components/delete-modal";
 import { ErrorBanner } from "../../components/error-banner";
-import { set } from "lodash";
 import { redirect } from "next/navigation";
+import React from "react";
 
 export default function Home() {
   const session = useSession();
@@ -78,6 +78,7 @@ export default function Home() {
 
   return (
     <section className="container mx-auto flex flex-row w-1/2 h-screen p-4 bg-white my-4 rounded shadow">
+
       <LeftNav user={session?.data?.user}></LeftNav>
       <div className="flex flex-col grow">
 

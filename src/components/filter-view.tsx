@@ -1,4 +1,5 @@
-import { TaskStatus } from "@/data-models/task-data-service/types";
+import React from "react";
+import { TaskStatus } from "../data-services/task-data-service/types";
 
 export const FilterView = ({
   filter,

@@ -1,0 +1,16 @@
+import { create{{camelcase name false }} } from "@/data-services/{{name}}-data-service";
+import { getServerSession } from "next-auth";
+
+export async function POST(request: Request) {
+    const session = await getServerSession();
+    if (!session || !session.user) {
+        return new Response('Unauthorized', { status: 401 });
+    }
+    const {{camelcase name true}} = await request.json()
+    console.log(`create {{name}} for ${session.user.email}`, {{camelcase name true}});
+    const res = await create{{camelcase name false}}({
+        ...{{camelcase name true}},
+        owner_id: session.user.email,
+    });
+    return Response.json(res as any);
+}

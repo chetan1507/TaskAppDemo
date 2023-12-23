@@ -8,7 +8,7 @@ import React from "react";
 export default function Home() {
   const session = useSession();
   if (!!session && session.status === 'authenticated') {
-    redirect('/home');
+    redirect('/tasks');
   }
   return (
     <main>

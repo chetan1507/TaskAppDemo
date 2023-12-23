@@ -27,7 +27,7 @@ export const fetchAll = async () => {
     }
   } catch (err: any) {
     console.error("Error updating task:", err.message);
-    throw new Error("Failed to fetch the tasks", err);
+    throw new Error("Failed to fetch the tasks: " + err.message);
   }
 };
 
@@ -54,7 +54,7 @@ export const create = async (taskData: any) => {
     }
   } catch (err: any) {
     console.error("Error creating task:", err.message);
-    throw new Error("Failed to create the task", err);
+    throw new Error("Failed to create the task: " + err.message);
   }
 };
 
@@ -81,7 +81,7 @@ export const update = async (taskId: string, taskData: any) => {
     }
   } catch (err: any) {
     console.error("Error updating task:", err.message);
-    throw new Error("Failed to update the task", err);
+    throw new Error("Failed to update the task: " + err.message);
   }
 };
 
@@ -107,6 +107,6 @@ export const remove = async (taskId: string) => {
     }
   } catch (err: any) {
     console.error("Error deleting task:", err.message);
-    throw new Error("Failed to delete the task", err);
+    throw new Error("Failed to delete the task: " + err.message);
   }
 };

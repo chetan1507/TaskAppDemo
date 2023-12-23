@@ -1,0 +1,13 @@
+import { delete{{camelcase name false }} } from "@/data-services/{{name}}-data-service";
+import { getServerSession } from "next-auth";
+
+export async function POST(request: Request, {params}: {params: {id: string} }) {
+    const session = await getServerSession();
+    if (!session || !session.user) {
+        return new Response('Unauthorized', { status: 401 });
+    }
+    console.log(`delete {{name}} for ${session.user.email}, ${params.id}`);
+
+    const res = await delete{{camelcase name false }}(params.id, session.user.email ?? '');
+    return Response.json(res as any);
+}

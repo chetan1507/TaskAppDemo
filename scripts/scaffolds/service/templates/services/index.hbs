@@ -1,0 +1,106 @@
+
+/**
+ * Fetch all the {{camelcase name true }}s
+ * @returns list of {{camelcase name true }}s
+ */
+export const fetchAll = async () => {
+  try {
+    const response = await fetch("/api/v1/{{name}}/all", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error("Failed to update {{camelcase name true }}:", response.statusText);
+      throw new Error("Failed to fetch the {{camelcase name true }}s");
+    }
+  } catch (err: any) {
+    console.error("Error updating {{camelcase name true }}:", err.message);
+    throw new Error("Failed to fetch the {{camelcase name true }}s: " + err.message);
+  }
+};
+
+/**
+ * Create a new {{camelcase name true }}
+ * @returns the newly created {{camelcase name true }}
+ */
+export const create = async ({{camelcase name true }}Data: any) => {
+  try {
+    const response = await fetch("/api/v1/{{name}}/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({{camelcase name true }}Data),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error("Failed to create {{camelcase name true }}:", response.statusText);
+      throw new Error("Failed to create the {{camelcase name true }}");
+    }
+  } catch (err: any) {
+    console.error("Error creating {{camelcase name true }}:", err.message);
+    throw new Error("Failed to create the {{camelcase name true }}: " + err.message);
+  }
+};
+
+/**
+ * Update an existing {{camelcase name true }}
+ * @returns the updated {{camelcase name true }}
+ */
+export const update = async ({{camelcase name true }}Id: string, {{camelcase name true }}Data: any) => {
+  try {
+    const response = await fetch(`/api/v1/{{name}}/${ {{camelcase name true }}Id }/update`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({{camelcase name true }}Data),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error("Failed to update {{camelcase name true }}:", response.statusText);
+      throw new Error("Failed to update the {{camelcase name true }}");
+    }
+  } catch (err: any) {
+    console.error("Error updating {{camelcase name true }}:", err.message);
+    throw new Error("Failed to update the {{camelcase name true }}: " + err.message);
+  }
+};
+
+/**
+ * Delete an existing {{camelcase name true }}
+ * @returns the deleted {{camelcase name true }}
+ */
+export const remove = async ({{camelcase name true }}Id: string) => {
+  try {
+    const response = await fetch(`/api/v1/{{name}}/${ {{camelcase name true }}Id }/delete`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error("Failed to delete {{camelcase name true }}:", response.statusText);
+      throw new Error("Failed to delete the {{camelcase name true }}");
+    }
+  } catch (err: any) {
+    console.error("Error deleting {{camelcase name true }}:", err.message);
+    throw new Error("Failed to delete the {{camelcase name true }}: " + err.message);
+  }
+};

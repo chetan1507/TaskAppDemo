@@ -1,0 +1,109 @@
+import mongoose, { Document, Schema } from "mongoose";
+import Joi from "joi";
+import { {{camelcase name false}} } from "./types";
+
+mongoose.connect((process as any).env.MONGO_DB_URL);
+
+const {{camelcase name false}}Schema = new Schema<{{camelcase name false}}>(
+  {
+    // TODO: add your schema here, following is an example
+    /*
+    title: { type: String, required: true },
+    description: { type: String },
+    status: { type: String, enum: Object.values({{camelcase name false}}Status), required: true },
+    owner_id: { type: String, required: true },
+    dueDate: { type: Date },
+    */
+    created: { type: Date },
+    updated: { type: Date, default: Date.now },
+  },
+  { versionKey: false }
+);
+
+// TBD : move to singleton
+let {{camelcase name false}}Model: mongoose.Model<{{camelcase name false}}>;
+
+if (mongoose.models?.{{camelcase name false}}) {
+  {{camelcase name false}}Model = mongoose.model<{{camelcase name false}}>("{{camelcase name false}}");
+} else {
+  {{camelcase name false}}Model = mongoose.model<{{camelcase name false}}>("{{camelcase name false}}", {{camelcase name false}}Schema);
+}
+
+const validate{{camelcase name false}} = (data: any) => {
+  // TODO: add your validation here, following is an example
+  /*
+  const schema = Joi.object({
+    title: Joi.string().required(),
+    description: Joi.string(),
+    status: Joi.string()
+      .valid(...Object.values({{camelcase name false}}Status))
+      .required(),
+    owner_id: Joi.string().required(),
+    dueDate: Joi.date().iso(),
+  });
+
+  return schema.validate(data);
+  */
+  return true;
+};
+
+export const getAll{{camelcase name false}}s = async (ownerId: string) => {
+  return {{camelcase name false}}Model.find({ owner_id: ownerId });
+};
+
+export const create{{camelcase name false}} = async ({{camelcase name true}}Data: any) => {
+  const { error } = validate{{camelcase name false}}({{camelcase name true}}Data);
+
+  if (error) {
+    throw new Error(error.details[0].message);
+  }
+
+  const new{{camelcase name false}} = new {{camelcase name false}}Model({
+    ...{{camelcase name true}}Data,
+    created: new Date(),
+    updated: new Date(),
+  });
+
+  return new{{camelcase name false}}.save();
+};
+
+export const update{{camelcase name false}} = async (
+  {{camelcase name true}}Id: string,
+  ownerId: string,
+  {{camelcase name true}}Data: any
+) => {
+  const { error } = validate{{camelcase name false}}({{camelcase name true}}Data);
+
+  if (error) {
+    throw new Error(error.details[0].message);
+  }
+
+  const updated{{camelcase name false}} = await {{camelcase name false}}Model.findOneAndUpdate(
+    { _id: {{camelcase name true}}Id, owner_id: ownerId },
+    { ...{{camelcase name true}}Data, updated: new Date() },
+    { new: true }
+  );
+
+  if (!updated{{camelcase name false}}) {
+    throw new Error(
+      "{{camelcase name false}} not found or you do not have permission to update it"
+    );
+  }
+
+  return updated{{camelcase name false}};
+};
+
+export const delete{{camelcase name false}} = async ({{camelcase name true}}Id: string, ownerId: string) => {
+  const deleted{{camelcase name false}} = await {{camelcase name false}}Model.findOneAndDelete({
+    _id: {{camelcase name true}}Id,
+    owner_id: ownerId,
+  });
+
+  if (!deleted{{camelcase name false}}) {
+    throw new Error(
+      "{{camelcase name false}} not found or you do not have permission to delete it"
+    );
+  }
+
+  return deleted{{camelcase name false}};
+};

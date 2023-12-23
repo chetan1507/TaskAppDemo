@@ -1,4 +1,4 @@
-import { updateTask } from "@/data-models/task-data-service";
+import { updateTask } from "@/data-services/task-data-service";
 import { getServerSession } from "next-auth";
 
 export async function POST(request: Request, {params}: {params: {id: string}}) {

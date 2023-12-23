@@ -1,4 +1,3 @@
-// import { NextApiRequest, NextApiResponse } from "next";
 import mongoose, { Document, Schema } from "mongoose";
 import Joi from "joi";
 import { Task, TaskStatus } from "./types";
